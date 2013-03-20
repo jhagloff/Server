@@ -70,7 +70,7 @@
 		  <a href="users/usermanagement.php"> <button class="btn btn-primary" type="button">User Management</button></a>
 		  <a href="resources/res_manage.php"><button class="btn btn-primary" type="button">Resource Management</button></a>
 		  <a href="checkout/rol_manage.php"><button class="btn btn-primary" type="button">Resource Checkout</button></a>
-		  <a href="index.php/main/hold"><button class="btn btn-primary" type="button">User Holds</button></a>
+		  <a href="holds/hold_manage.php"><button class="btn btn-primary" type="button">User Holds</button></a>
 		  </buttons>
 		</p>
 		</div>

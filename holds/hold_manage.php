@@ -17,8 +17,10 @@ isAdmin();
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
     </style>
+    <link href="..//css/bootstrap.css" rel="stylesheet">
     <link href="../css/bootstrap-responsive.css" rel="stylesheet">
-
+    <link href="../css/tablecloth.css" rel="stylesheet">
+    <link href="../css/prettify.css" rel="stylesheet"> 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
@@ -63,7 +65,47 @@ isAdmin();
 
       <h1>Resource Management</h1>
       <p>This page is for editing Resources</p>
-	  <?php listResources() ?>
+	  
+	  
+	  
+	  <? 
+include('../database_connect.php'); 
+echo "<table cellspacing=\"1\" cellpadding=\"3\" class=\"tablehead\" >"; 
+echo"<thead>";
+echo "<tr class=\"colhead\"> "; 
+echo "<th>Hold Id</th>"; 
+echo "<th>User Email</th>"; 
+echo "<th>Resource Name</th>"; 
+echo "<th>Hold Start</th>"; 
+echo "<th>Hold End</th>";
+echo "<th class=\"{sorter: false}\"></th>";
+echo "<th class=\"{sorter: false}\"></th>";
+echo "</tr>"; 
+echo "</thead>";
+echo "<tbody>";
+$result = mysqli_query($con,"SELECT * FROM `userhold`") or trigger_error(mysql_error($con)); 
+while($row = mysqli_fetch_array($result)){ 
+foreach($row AS $key => $value) { $row[$key] = stripslashes($value); } 
+
+echo "<tr>";  
+echo "<td>" . nl2br( $row['hold_id']) . "</td>";  
+echo "<td>" . nl2br( $row['user_email']) . "</td>";  
+echo "<td>" . nl2br( $row['resource_name']) . "</td>";  
+echo "<td>" . nl2br( $row['hold_start']) . "</td>";  
+echo "<td>" . nl2br( $row['hold_end']) . "</td>";  
+echo "<td><a class=\"btn btn-info\" href=hold_edit.php?hold_id={$row['hold_id']}>Edit</a></td>";
+echo "<td><a class=\"btn btn-danger\" href=hold_delete.php?hold_id={$row['hold_id']}>Delete</a></td> "; 
+echo "</tr>"; 
+
+} 
+echo "</tbody>";
+echo "</table>"; 
+echo "<a class=\"btn btn-info\" href=hold_add.php>New Row</a>"; 
+?>
+	  
+	  
+	  
+	  
 	  <a href="../adminpanel.php" class="btn">Back</a>
 	
     </div> <!-- /container -->
@@ -84,6 +126,21 @@ isAdmin();
     <script src="../js/bootstrap-collapse.js"></script>
     <script src="../js/bootstrap-carousel.js"></script>
     <script src="../js/bootstrap-typeahead.js"></script>
-
+    <script src="../js/jquery-1.7.2.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/jquery.metadata.js"></script>
+    <script src="../js/jquery.tablesorter.min.js"></script>
+    <script src="../js/jquery.tablecloth.js"></script>
+    
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+        $("table").tablecloth({
+          theme: "default",
+          striped: true,
+          sortable: true,
+          condensed: true
+        });
+      });
+    </script>
   </body>
 </html>
