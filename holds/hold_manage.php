@@ -19,8 +19,6 @@ isAdmin();
     </style>
     <link href="..//css/bootstrap.css" rel="stylesheet">
     <link href="../css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="../css/tablecloth.css" rel="stylesheet">
-    <link href="../css/prettify.css" rel="stylesheet"> 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
@@ -67,10 +65,9 @@ isAdmin();
       <p>This page is for editing a User Holds</p>
 	  
 	  
-	  
 	  <? 
 include('../database_connect.php'); 
-echo "<table cellspacing=\"1\" cellpadding=\"3\" class=\"tablehead\" >"; 
+echo "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"table table-striped table-bordered\" id=\"example\" >"; 
 echo"<thead>";
 echo "<tr class=\"colhead\"> "; 
 echo "<th>Hold Id</th>"; 
@@ -79,10 +76,23 @@ echo "<th>Resource Name</th>";
 echo "<th>Libray</th>";
 echo "<th>Hold Start</th>"; 
 echo "<th>Hold End</th>";
-echo "<th class=\"{sorter: false}\"></th>";
-echo "<th class=\"{sorter: false}\"></th>";
+echo "<th></th>";
+echo "<th></th>";
 echo "</tr>"; 
 echo "</thead>";
+echo "<tfoot>";
+echo "<tr class=\"colhead\"> "; 
+echo "<th>Hold Id</th>"; 
+echo "<th>User Email</th>"; 
+echo "<th>Resource Name</th>"; 
+echo "<th>Libray</th>";
+echo "<th>Hold Start</th>"; 
+echo "<th>Hold End</th>";
+echo "<th></th>";
+echo "<th></th>";
+echo "</tr>"; 
+echo "</tfoot>";
+
 echo "<tbody>";
 $result = mysqli_query($con,"SELECT * FROM `userhold`") or trigger_error(mysql_error($con)); 
 while($row = mysqli_fetch_array($result)){ 
@@ -107,7 +117,6 @@ echo "<a class=\"btn btn-info\" href=hold_add.php>New Row</a>";
 	  
 	  
 	  
-	  
 	  <a href="../adminpanel.php" class="btn">Back</a>
 	
     </div> <!-- /container -->
@@ -116,33 +125,30 @@ echo "<a class=\"btn btn-info\" href=hold_add.php>New Row</a>";
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../js/jquery.js"></script>
-    <script src="../js/bootstrap-transition.js"></script>
-    <script src="../js/bootstrap-alert.js"></script>
-    <script src="../js/bootstrap-modal.js"></script>
-    <script src="../js/bootstrap-dropdown.js"></script>
-    <script src="../js/bootstrap-scrollspy.js"></script>
-    <script src="../js/bootstrap-tab.js"></script>
-    <script src="../js/bootstrap-tooltip.js"></script>
-    <script src="../js/bootstrap-popover.js"></script>
-    <script src="../js/bootstrap-button.js"></script>
-    <script src="../js/bootstrap-collapse.js"></script>
-    <script src="../js/bootstrap-carousel.js"></script>
-    <script src="../js/bootstrap-typeahead.js"></script>
-    <script src="../js/jquery-1.7.2.min.js"></script>
     <script src="../js/bootstrap.js"></script>
-    <script src="../js/jquery.metadata.js"></script>
-    <script src="../js/jquery.tablesorter.min.js"></script>
-    <script src="../js/jquery.tablecloth.js"></script>
+	<script src="../js/dataTables.bootstrap.js"</script>
+    <script src="../js/TableTools.js"></script>
+    <script src="../js/jquery.dataTables.js"></script>
+    <script src="../js/ZeroClipboard.js"></script>
+    
     
     <script type="text/javascript" charset="utf-8">
-      $(document).ready(function() {
-        $("table").tablecloth({
-          theme: "default",
-          striped: true,
-          sortable: true,
-          condensed: true
-        });
-      });
+$(document).ready( function () {
+	$('#example').dataTable( {
+		"sDom": "<'row-fluid'<'span6'T><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"oTableTools": {
+			"aButtons": [
+				"copy",
+				"print",
+				{
+					"sExtends":    "collection",
+					"sButtonText": 'Save <span class="caret" />',
+					"aButtons":    [ "csv", "xls", "pdf" ]
+				}
+			]
+		}
+	} );
+} );
     </script>
   </body>
 </html>
