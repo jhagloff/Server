@@ -22,6 +22,7 @@
 				<table class=\"table table-striped table-hover table-condensed\">
 				  <thead>
 					<tr>
+					  <th>id</th>
 					  <th>Title</th>
 					  <th>Author</th>
 					  <th>Description</th>
@@ -39,6 +40,7 @@
 					echo "<tr>"; 				 
 					{ 					 
 						echo "<tr>";
+						echo "<td>" . $row['res_id'] . "</td>";
 						echo "<td>" . $row['res_title'] . "</td>";
 						echo "<td>" . $row['res_author'] . "</td>";
 						echo "<td>" . $row['res_description'] . "</td>";

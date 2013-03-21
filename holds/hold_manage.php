@@ -63,8 +63,8 @@ isAdmin();
 
     <div class="hero-unit container">
 
-      <h1>Resource Management</h1>
-      <p>This page is for editing Resources</p>
+      <h1>User Holds</h1>
+      <p>This page is for editing a User Holds</p>
 	  
 	  
 	  
@@ -76,6 +76,7 @@ echo "<tr class=\"colhead\"> ";
 echo "<th>Hold Id</th>"; 
 echo "<th>User Email</th>"; 
 echo "<th>Resource Name</th>"; 
+echo "<th>Libray</th>";
 echo "<th>Hold Start</th>"; 
 echo "<th>Hold End</th>";
 echo "<th class=\"{sorter: false}\"></th>";
@@ -90,7 +91,8 @@ foreach($row AS $key => $value) { $row[$key] = stripslashes($value); }
 echo "<tr>";  
 echo "<td>" . nl2br( $row['hold_id']) . "</td>";  
 echo "<td>" . nl2br( $row['user_email']) . "</td>";  
-echo "<td>" . nl2br( $row['resource_name']) . "</td>";  
+echo "<td>" . nl2br( $row['resource_name']) . "</td>"; 
+echo "<td>" . nl2br( $row['res_library_ID']) . "</td>"; 
 echo "<td>" . nl2br( $row['hold_start']) . "</td>";  
 echo "<td>" . nl2br( $row['hold_end']) . "</td>";  
 echo "<td><a class=\"btn btn-info\" href=hold_edit.php?hold_id={$row['hold_id']}>Edit</a></td>";

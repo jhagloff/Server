@@ -96,7 +96,7 @@ mysqli_close($con);
 <p><b>Volume Number:</b><br /><input type='text' name='res_volume' value='<?= stripslashes($row['res_volume']) ?>' /> 
 <p><b>Issue Number:</b><br /><input type='text' name='res_issue' value='<?= stripslashes($row['res_issue']) ?>' /> 
 <p><b>ISBN:</b><br /><input type='text' name='res_isbn' value='<?= stripslashes($row['res_isbn']) ?>' /> 
-<p><b>Date:</b><br /><input type='text' name='res_date' value='<?= stripslashes($row['res_date']) ?>' /> 
+<p><b>Date:</b><br /><input type='text' pattern='\d{4}[\-]\d{2}[\-]\d{2}' title="Format YYYY-MM-DD" name='res_date' value='<?= stripslashes($row['res_date']) ?>' /> 
 <p><input type='submit' class="btn btn-info" value='Edit Row' /><input type='hidden' value='1' name='submitted' /> 
 </form> 
 <? } ?> 

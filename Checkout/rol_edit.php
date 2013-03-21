@@ -12,6 +12,7 @@ echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Checkout
 } 
 $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `rol` WHERE `rol_id` = '$rol_id' ")); 
 mysqli_close($con);
+
 ?>
 <html lang="en">
   <head>
@@ -72,11 +73,11 @@ mysqli_close($con);
 
     <div class="hero-unit container">
 
-      <h1>Edit User</h1>
-      <p>This page is for editing Users</p>
+      <h1>Edit Resource on Loan</h1>
+      <p>This page is for editing a Resource on loan</p>
 	  <form action='' method='POST'> 
 <form action='' method='POST'> 
-<p><b>User Email:</b><br /><input type='text' required name='user_email' value='<?= stripslashes($row['user_email']) ?>' /> 
+<p><b>User Email:</b><br /><input type='email' required name='user_email' value='<?= stripslashes($row['user_email']) ?>' /> 
 <p><b>Resource Name:</b><br /><input type='text' required name='resource_name' value='<?= stripslashes($row['resource_name']) ?>' /> 
 <p><b>Res Library ID:</b><br /><input type='text' required name='res_library_ID' value='<?= stripslashes($row['res_library_ID']) ?>' /> 
 <p><b>Date Signed Out:</b><br /><input type='text' required name='date_signed_out' value='<?= stripslashes($row['date_signed_out']) ?>' /> 

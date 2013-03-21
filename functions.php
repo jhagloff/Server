@@ -311,4 +311,47 @@ function deleteRol($id){
 	echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Resource on Loan Deleted. </h3><br />" : "<h3 class='container text-error'>Unable to Delete Resource on Loan. </h3><br />"; 
 }
 
+function list_holds(){
+
+include('database_connect.php'); 
+echo "<table cellspacing=\"1\" cellpadding=\"3\" class=\"tablehead\" >"; 
+echo"<thead>";
+echo "<tr class=\"colhead\"> "; 
+echo "<th>Hold Id</th>"; 
+echo "<th>User Email</th>"; 
+echo "<th>Resource Name</th>"; 
+echo "<th>Hold Start</th>"; 
+echo "<th>Hold End</th>";
+echo "<th class=\"{sorter: false}\"></th>";
+echo "<th class=\"{sorter: false}\"></th>";
+echo "</tr>"; 
+echo "</thead>";
+echo "<tbody>";
+$result = mysqli_query($con,"SELECT * FROM `userhold`") or trigger_error(mysql_error($con)); 
+while($row = mysqli_fetch_array($result)){ 
+foreach($row AS $key => $value) { $row[$key] = stripslashes($value); } 
+
+echo "<tr>";  
+echo "<td>" . nl2br( $row['hold_id']) . "</td>";  
+echo "<td>" . nl2br( $row['user_email']) . "</td>";  
+echo "<td>" . nl2br( $row['resource_name']) . "</td>";  
+echo "<td>" . nl2br( $row['hold_start']) . "</td>";  
+echo "<td>" . nl2br( $row['hold_end']) . "</td>";  
+echo "<td><a class=\"btn btn-info\" href=hold_edit.php?hold_id={$row['hold_id']}>Edit</a></td>";
+echo "<td><a class=\"btn btn-danger\" href=hold_delete.php?hold_id={$row['hold_id']}>Delete</a></td> "; 
+echo "</tr>"; 
+
+} 
+echo "</tbody>";
+echo "</table>"; 
+echo "<a class=\"btn btn-info\" href=hold_add.php>New Row</a>"; 
+}
+
+function delete_holds($id){
+include('database_connect.php'); 
+$hold_id = $id;
+mysqli_query($con,"DELETE FROM `userhold` WHERE `hold_id` = '$hold_id' ") ; 
+echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Hold Deleted. </h3><br />" : "<h3 class='container text-error'>Unable to Delete Hold. </h3><br />"; 
+}
+
 ?>

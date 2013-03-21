@@ -89,7 +89,7 @@ mysqli_close($con);
       <p>This page is for Adding a Resource</p>
 <form action='' method='POST'> 
 <p><b>Title:</b><br /><input required type='text' maxlength="150" name='res_title'/> 
-<p><b>Author:</b><br /><input type='text'maxlength="200" name='res_author'/> 
+<p><b>Author:</b><br /><input required type='text'maxlength="200" name='res_author'/> 
 <p><b>Description:</b><br /><textarea maxlength="300" rows="4" cols="10" name='res_description'>
 </textarea>
 
@@ -97,7 +97,7 @@ mysqli_close($con);
 <p><b>Library ID:</b><br />
 <select name='res_library_ID'>
 	<option value="PRIDE">Pride Club</option>
-	<option value="WOMENS>Women's Centre</option>
+	<option value="WOMENS">Women's Centre</option>
 	<option value="LPIRG">LPIRG</option>
 </select>
 <p><b>Resource Type:</b><br />
@@ -109,7 +109,7 @@ mysqli_close($con);
 <p><b>Volume Number:</b><br /><input type='text' name='res_volume'/> 
 <p><b>Issue Number:</b><br /><input type='text' name='res_issue'/> 
 <p><b>ISBN:</b><br /><input type='text' name='res_isbn'/> 
-<p><b>Date:</b><br /><input type='text' name='res_date'/> 
+<p><b>Date:</b><br /><input required pattern='\d{4}[\-]\d{2}[\-]\d{2}' title="Format YYYY-MM-DD" type='text' name='res_date'/> 
 <p><input type='submit' class="btn btn-info" value='Add Row' /><input type='hidden' value='1' name='submitted' /> 
 </form> 
 

@@ -16,6 +16,7 @@ $lib_result = mysqli_query($con,$res_id);
 
 foreach($_POST AS $key => $value) { $_POST[$key] = mysqli_real_escape_string($con,$value); } 
 $sql = "INSERT INTO `rol` ( `user_email` ,  `resource_name` ,  `res_library_ID` ,  `date_signed_out` ,  `date_due`  ) VALUES(  '{$_POST['user_email']}' ,  '{$_POST['resource_name']}' ,  '{$libID}' ,  '{$curDate}' ,  '{$dueDate}'  ) "; 
+
 if(!mysqli_query($con,$sql)){
 	echo "<h3 class='container text-error'>Cannot add Record </h3><br>";
 	mysqli_close($con);
@@ -88,7 +89,7 @@ mysqli_close($con);
 
     <div class="hero-unit container">
 
-      <h1>Checking Out a Resource</h1>
+      <h1>Check Out a Resource</h1>
       <p>This page is for checking out a Resource</p>
 
 <form action='' method='POST'> 
